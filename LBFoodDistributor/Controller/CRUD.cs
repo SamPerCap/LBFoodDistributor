@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LBFoodDistributor
 {
-    class EuropeanCRUD : ICRUD
+    class CRUD : ICRUD
     {
         public IEnumerable<Food> GetAll()
         {
