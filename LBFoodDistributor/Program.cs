@@ -10,47 +10,46 @@ namespace LBFoodDistributor
     {
         static void Main(string[] args)
         {
-        Start:
-            string apiUrl = "";
-            Console.Write("Enter Name: ");
-            string name = Console.ReadLine();
-
-            if (name.Equals("Asia"))
+            try
             {
-                apiUrl = "http://localhost:54774/asianfood";
-            }
-            else if (name.Equals("Europe"))
-            {
-                apiUrl = "http://localhost:56326/api/EFood";
-            }
-            else
-                Console.WriteLine("Try again lol");
-
-             
-            //var input = new
-            //{
-            //    Name = name,
-            //};
-           // string inputJson = (new JavaScriptSerializer()).Serialize(input);
-            WebClient client = new WebClient();
-            client.Headers["Content-type"] = "application/json";
-            client.Encoding = Encoding.UTF8;
-            var json = client.DownloadData(apiUrl);
-            string download = Encoding.ASCII.GetString(json);
-            List<Food> customers = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
-            if (customers.Count > 0)
-            {
-                foreach (Food customer in customers)
+            Start:
+                string apiUrl = "";
+                Console.Write("Enter either Asia or Europe: ");
+                string name = Console.ReadLine();
+                
+                if (name.ToLower().Contains("asia"))
                 {
-                    Console.WriteLine(customer.Name);
+                    apiUrl = "http://localhost:54774/asianfood";
                 }
+                else if (name.ToLower().Contains("europe".ToLower()) || name.ToLower().Contains("eu".ToLower()))
+                {
+                    apiUrl = "http://localhost:56326/api/EFood";
+                }
+                WebClient client = new WebClient();
+                client.Headers["Content-type"] = "application/json";
+                client.Encoding = Encoding.UTF8;
+                var json = client.DownloadData(apiUrl);
+                string download = Encoding.ASCII.GetString(json);
+                List<Food> customers = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
+                if (customers.Count > 0)
+                {
+                    foreach (Food customer in customers)
+                    {
+                        Console.WriteLine(customer.Name);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No records found.");
+                }
+                Console.WriteLine();
+                goto Start;
             }
-            else
+            catch(Exception e)
             {
-                Console.WriteLine("No records found.");
+                Console.WriteLine("Something went wrong. Error: " + e);
             }
-            Console.WriteLine();
-            goto Start;
+
         }
 
         public class Food

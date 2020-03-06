@@ -26,12 +26,6 @@ namespace AsianFoodAPI.Data
                     Name = "DonkeyKong Dish",
                     Continent = "Asia",
                     Country = "Japan",
-                   // Ingredients = new List<string>()
-                    //{
-                    //    "Sam Souce",
-                    //    "Amazing Sam Pineapple",
-                    //    "Crazy Sam BBQ"
-                    //}
                 }
             };
 
@@ -42,17 +36,22 @@ namespace AsianFoodAPI.Data
                     Name = "AmazingSam",
                     Continent = "Asia",
                     Country = "China",
-                   // Ingredients = new List<string>()
-                    //{
-                    //    "Sam Souce",
-                    //    "Amazing Sam Pineapple",
-                    //    "Crazy Sam BBQ"
-                    //}
+                }
+            };
+
+            List<AsianFood> food3 = new List<AsianFood>
+            {
+                new AsianFood {
+                    Id = 3,
+                    Name = "ChinLinSam",
+                    Continent = "Asia",
+                    Country = "India",
                 }
             };
 
             context.AsianFood.AddRange(food);
             context.AsianFood.AddRange(food2);
+            context.AsianFood.AddRange(food3);
             context.SaveChanges();
         }
     }
