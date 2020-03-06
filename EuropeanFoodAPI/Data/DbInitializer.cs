@@ -1,15 +1,26 @@
-﻿using LBFoodDistributor.Model;
+﻿using EuropeanFoodAPI.Model;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LBFoodDistributor
+namespace EuropeanFoodAPI.Data
 {
-    public class EuropeanFood
+    public class DbInitializer : IDbInitializer
     {
-        List<Food> ListOfEuropeanFood = new List<Food>
+        public void Initialize(EFoodApiContext context)
         {
-            new Food
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
+            if (context.EuropeanFood.Any())
+            {
+                return;
+            }
+
+            IEnumerable<Food> products = new List<Food>
+            {
+                new Food
             {
                 Name = "Paella",
                 Country = "Spain",
@@ -44,8 +55,10 @@ namespace LBFoodDistributor
                 Continent ="Europe",
                 Ingredients = {"Bank", "Euro", "Dutch" , "Amsterdam"}
             }
+            };
 
-        };
-
+            context.EuropeanFood.AddRange(products);
+            context.SaveChanges();
+        }
     }
 }
