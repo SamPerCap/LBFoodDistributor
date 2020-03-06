@@ -7,8 +7,9 @@ namespace EuropeanFoodAPI.Model
 {
     public class Food
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public List<string> Ingredients { get; set; }
+        public string MainIngredient { get; set; }
         public string Country { get; set; }
         public string Continent { get; set; }
     }

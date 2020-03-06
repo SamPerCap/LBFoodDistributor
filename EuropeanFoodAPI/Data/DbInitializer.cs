@@ -18,46 +18,46 @@ namespace EuropeanFoodAPI.Data
                 return;
             }
 
-            IEnumerable<Food> products = new List<Food>
+            List<Food> foodList = new List<Food>
             {
                 new Food
             {
                 Name = "Paella",
                 Country = "Spain",
                 Continent = "Europe",
-                Ingredients = {"Rice", "Chicken", "Mussel", "Squid"}
+                MainIngredient = "Rice"
             },
             new Food
             {
                 Name = "Pizza",
                 Country = "Italy",
                 Continent = "Europe",
-                Ingredients = {"Cheese", "Ham", "Tomato", "Basil"}
+                MainIngredient = "Tomato"
             },
             new Food
             {
                 Name = "Hakarl",
                 Country = "Island",
                 Continent = "Europe",
-                Ingredients = {"Shark", "Hate", "Kris", "Help"}
+                MainIngredient = "Shark"
             },
             new Food
             {
                 Name = "Quiche Lorraine",
                 Country = "France",
                 Continent = "Europe",
-                Ingredients = {"Eggs", "Cream", "Ham", "Hope"}
+                MainIngredient = "Eggs"
             },
             new Food
             {
                 Name = "Money",
                 Country = "Netherlands",
                 Continent ="Europe",
-                Ingredients = {"Bank", "Euro", "Dutch" , "Amsterdam"}
+                MainIngredient = "Spices"
             }
             };
 
-            context.EuropeanFood.AddRange(products);
+            context.EuropeanFood.AddRange(foodList);
             context.SaveChanges();
         }
     }
