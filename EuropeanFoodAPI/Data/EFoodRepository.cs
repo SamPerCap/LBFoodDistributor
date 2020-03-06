@@ -1,6 +1,7 @@
 ﻿using EuropeanFoodAPI.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EuropeanFoodAPI.Data
 {
@@ -13,9 +14,9 @@ namespace EuropeanFoodAPI.Data
             context = ctx;
         }
 
-        public IEnumerable<Food> GetAll()
+        IEnumerable<Food> IRepository<Food>.GetAll()
         {
-            throw new NotImplementedException();
+            return context.EuropeanFood.ToList();
         }
 
         public Food GetBycountry(string country)
