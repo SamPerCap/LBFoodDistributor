@@ -35,7 +35,24 @@ namespace AsianFoodAPI.Data
                 }
             };
 
+            List<AsianFood> food2 = new List<AsianFood>
+            {
+                new AsianFood {
+                    Id = 2,
+                    Name = "AmazingSam",
+                    Continent = "Asia",
+                    Country = "China",
+                   // Ingredients = new List<string>()
+                    //{
+                    //    "Sam Souce",
+                    //    "Amazing Sam Pineapple",
+                    //    "Crazy Sam BBQ"
+                    //}
+                }
+            };
+
             context.AsianFood.AddRange(food);
+            context.AsianFood.AddRange(food2);
             context.SaveChanges();
         }
     }
