@@ -21,7 +21,7 @@ namespace LBFoodDistributor
                 {
                     apiUrl = "http://localhost:54774/asianfood";
                 }
-                else if (name.ToLower().Contains("europe".ToLower()) || name.ToLower().Contains("eu".ToLower()))
+                else if (name.ToLower().Contains("europe") || name.ToLower().Contains("eu"))
                 {
                     apiUrl = "http://localhost:56326/api/EFood";
                 }
