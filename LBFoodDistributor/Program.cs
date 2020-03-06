@@ -30,12 +30,14 @@ namespace LBFoodDistributor
                 client.Encoding = Encoding.UTF8;
                 var json = client.DownloadData(apiUrl);
                 string download = Encoding.ASCII.GetString(json);
-                List<Food> customers = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
-                if (customers.Count > 0)
+                List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
+                if (foodType.Count > 0)
                 {
-                    foreach (Food customer in customers)
+                    foreach (Food food in foodType)
                     {
-                        Console.WriteLine(customer.Name);
+                        Console.WriteLine($"Food name: {food.Name}\n" +
+                            $"Food Continent: {food.Continent}\n" +
+                            $"Food Country: {food.Country}\n");
                     }
                 }
                 else
