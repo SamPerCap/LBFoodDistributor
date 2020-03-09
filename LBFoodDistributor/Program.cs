@@ -13,25 +13,41 @@ namespace LBFoodDistributor
         static void Main(string[] args)
         {
             Queue<string> asianQueue = new Queue<string>();
-            asianQueue.Enqueue("http://localhost:54774/asianfood");
-            asianQueue.Enqueue("http://localhost:54775/asianfood");
-            asianQueue.Enqueue("http://localhost:54776/asianfood");
+            Queue<string> europeanQueue = new Queue<string>();
 
             string continent = "start";
 
             while (!continent.Equals("quit"))
             {
+
+
                 Console.Write("Enter either Asia or Europe: ");
                 continent = Console.ReadLine();
 
                 if (continent.ToLower().Equals("asia"))
                 {
-                    GetInfo("http://localhost:54774/api/asianFood");
-                    //GetInfo(asianQueue.Peek());
+                    if (asianQueue.Count == 0)
+                    {
+                        asianQueue.Enqueue("http://localhost:54774/asianfood");
+                        asianQueue.Enqueue("http://localhost:54775/asianfood");
+                        asianQueue.Enqueue("http://localhost:54776/asianfood");
+                    }
+                    Console.WriteLine("APIURL: " + asianQueue.Peek());
+                    Console.WriteLine("How many API's are in queue: " + asianQueue.Count);
+                    GetInfo(asianQueue.Peek());
+                    asianQueue.Dequeue();
                 }
                 else if (continent.ToLower().Equals("europe"))
                 {
-                    GetInfo("http://localhost:56326/api/EFood");
+                    if (europeanQueue.Count == 0)
+                    {
+                        europeanQueue.Enqueue("http://localhost:56326/api/EFood");
+                        europeanQueue.Enqueue("http://localhost:56327/api/EFood");
+                    }
+                    Console.WriteLine("APIURL: " + europeanQueue.Peek());
+                    Console.WriteLine("How many API's are in queue: " + europeanQueue.Count);
+                    GetInfo(europeanQueue.Peek());
+                    europeanQueue.Dequeue();
                 }
                 else
                 {
