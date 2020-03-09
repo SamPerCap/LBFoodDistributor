@@ -34,20 +34,13 @@ namespace LBFoodDistributor
                 {
                     try
                     {
-                        if (iA == 3)
+                        if (iA >= 3)
                             iA = 0;
                         GetInfo(asianQueue[iA]);
                     }
                     catch
                     {
                         Console.WriteLine("The server is down, requesting the next server...");
-                        Console.WriteLine("");
-                        Console.WriteLine("The server is down, requesting the next server...");
-                        Console.WriteLine("");
-                        Console.WriteLine("The server is down, requesting the next server...");
-                        Console.WriteLine("");
-                        Console.WriteLine("The server is down, requesting the next server...");
-                        Console.WriteLine("");
 
                         iA += 1;
                         if (iA >= 3)
@@ -61,20 +54,13 @@ namespace LBFoodDistributor
                 {
                     try
                     {
-                        if (iE == 2)
+                        if (iE >= 2)
                             iE = 0;
                         GetInfo(europeQueue[iE]);
                     }
                     catch
                     {
                         Console.WriteLine("The server is down, requesting the next server...");
-                        Console.WriteLine("");
-                        Console.WriteLine("The server is down, requesting the next server...");
-                        Console.WriteLine("");
-                        Console.WriteLine("The server is down, requesting the next server...");
-                        Console.WriteLine("");
-                        Console.WriteLine("The server is down, requesting the next server...");
-                        Console.WriteLine("");
 
                         iE += 1;
                         if (iE >= 2)
@@ -93,27 +79,32 @@ namespace LBFoodDistributor
 
         public static void GetInfo(string apiUrl)
         {
-            WebClient client = new WebClient();
-            client.Headers["Content-type"] = "application/json";
-            client.Encoding = Encoding.UTF8;
-            var json = client.DownloadData(apiUrl);
-            if (json != null)
+            if (!String.IsNullOrEmpty(apiUrl))
             {
-                string download = Encoding.ASCII.GetString(json);
-                List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
-                if (foodType.Count > 0)
+                WebClient client = new WebClient();
+                client.Headers["Content-type"] = "application/json";
+                client.Encoding = Encoding.UTF8;
+                var json = client.DownloadData(apiUrl);
+                if (json != null)
                 {
-                    foreach (Food food in foodType)
+                    string download = Encoding.ASCII.GetString(json);
+                    List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
+                    if (foodType.Count > 0)
                     {
-                        Console.WriteLine($"Food name: {food.Name}\n" +
-                            $"Food Continent: {food.Continent}\n" +
-                            $"Food Country: {food.Country}\n");
+                        foreach (Food food in foodType)
+                        {
+                            Console.WriteLine($"Food name: {food.Name}\n" +
+                                $"Food Continent: {food.Continent}\n" +
+                                $"Food Country: {food.Country}\n");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No records found.");
                     }
                 }
                 else
-                {
-                    Console.WriteLine("No records found.");
-                }
+                    Console.WriteLine("Error while loading URL");
             }
         }
 

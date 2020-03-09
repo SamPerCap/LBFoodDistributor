@@ -13,8 +13,8 @@ namespace AsianFoodAPI.Controllers
     [Route("[controller]")]
     public class AsianFoodController : Controller
     {
-        static Random random = new Random();
-        int isDown = random.Next(4);
+        Random random = new Random();
+        int isDown;
         private readonly IRepository<AsianFood> _asianFoodRepo;
         public AsianFoodController(IRepository<AsianFood> asianFoodRepo)
         {
@@ -27,6 +27,7 @@ namespace AsianFoodAPI.Controllers
         {
             // 0 means the server is down.
             // 1 means the server is up.
+            isDown = random.Next(4);
 
             if (isDown == 0)
                 return NotFound();
