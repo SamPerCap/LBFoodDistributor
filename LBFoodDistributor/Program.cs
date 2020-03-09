@@ -1,25 +1,37 @@
 ﻿using Nancy.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LBFoodDistributor
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             try
             {
             Start:
-                string apiUrl = "";
+                string apiUrl = "http://localhost:54774/asianfood";
+                string apiUrl2 = "http://localhost:54774/asianfood2";
+                string apiUrl3 = "http://localhost:54774/asianfood3";
                 Console.Write("Enter either Asia or Europe: ");
                 string name = Console.ReadLine();
-                
+
+                Queue asianQueue = new Queue();
+                asianQueue.Enqueue(apiUrl);
+                asianQueue.Enqueue(apiUrl2);
+                asianQueue.Enqueue(apiUrl3);
+
+
+
                 if (name.ToLower().Contains("asia"))
                 {
-                    apiUrl = "http://localhost:54774/asianfood";
+                    asianQueue.Peek();
                 }
                 else if (name.ToLower().Contains("europe") || name.ToLower().Contains("eu"))
                 {
