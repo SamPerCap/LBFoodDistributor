@@ -10,6 +10,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsianFoodAPI", "AsianFoodAPI\AsianFoodAPI.csproj", "{EB2CDDA6-8786-470F-B772-B3B18B532334}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EuropeanFoodAPI2", "EuropeanFoodAPI2\EuropeanFoodAPI2.csproj", "{9B4C0A44-9410-45C9-A161-FC66650867D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsianFoodAPI2", "AsianFoodAPI2\AsianFoodAPI2.csproj", "{EDC1FF47-6A86-4E70-B7A7-A8FF4BE18D58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
