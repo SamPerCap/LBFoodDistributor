@@ -20,9 +20,11 @@ namespace LBFoodDistributor
 
             string[] europeQueue = new string[2];
             europeQueue[0] = "http://localhost:56326/api/EFood";
-            europeQueue[0] = "http://localhost:56327/api/EFood";
+            europeQueue[1] = "http://localhost:56327/api/EFood";
 
             string continent = "start";
+            int iA = 0;
+            int iE = 0;
 
             while (!continent.Equals("quit"))
             {
@@ -31,23 +33,21 @@ namespace LBFoodDistributor
 
                 if (continent.ToLower().Equals("asia"))
                 {
-                    for (int i = 0; i <= asianQueue.Length; i++)
-                    {
-                        if (i == 3)
-                            i = 0;
-                        else
-                            GetInfo(asianQueue[i]);
-                    }
+                    if (iA == 3)
+                        iA = 0;
+
+                    GetInfo(asianQueue[iA]);
+                    Console.WriteLine("APiUrl: " + asianQueue[iA] + "APiNumber: " + (iA + 1));
+                    iA += 1;
                 }
                 else if (continent.ToLower().Equals("europe"))
                 {
-                    for (int i = 0; i <= europeQueue.Length; i++)
-                    {
-                        if (i == 2)
-                            i = 0;
-                        else
-                            GetInfo(europeQueue[i]);
-                    }
+                    if (iE == 2)
+                        iE = 0;
+
+                    GetInfo(europeQueue[iE]);
+                    Console.WriteLine("APiUrl: " + europeQueue[iE] + "APiNumber: " + (iE + 1));
+                    iE += 1;
                 }
                 else
                 {
