@@ -10,48 +10,47 @@ namespace LBFoodDistributor
     {
         static void Main(string[] args)
         {
-            try
+            while (!Console.ReadLine().Equals("quit"))
             {
-            Start:
-                string apiUrl = "";
                 Console.Write("Enter either Asia or Europe: ");
                 string name = Console.ReadLine();
-                
+
                 if (name.ToLower().Contains("asia"))
                 {
-                    apiUrl = "http://localhost:54774/asianfood";
+                    GetInfo("http://localhost:56326/api/asianFood");
                 }
                 else if (name.ToLower().Contains("europe") || name.ToLower().Contains("eu"))
                 {
-                    apiUrl = "http://localhost:56326/api/EFood";
-                }
-                WebClient client = new WebClient();
-                client.Headers["Content-type"] = "application/json";
-                client.Encoding = Encoding.UTF8;
-                var json = client.DownloadData(apiUrl);
-                string download = Encoding.ASCII.GetString(json);
-                List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
-                if (foodType.Count > 0)
-                {
-                    foreach (Food food in foodType)
-                    {
-                        Console.WriteLine($"Food name: {food.Name}\n" +
-                            $"Food Continent: {food.Continent}\n" +
-                            $"Food Country: {food.Country}\n");
-                    }
+                    GetInfo("http://localhost:56326/api/EFood");
                 }
                 else
                 {
-                    Console.WriteLine("No records found.");
+                    Console.WriteLine("Command not identified");
                 }
-                Console.WriteLine();
-                goto Start;
             }
-            catch(Exception e)
-            {
-                Console.WriteLine("Something went wrong. Error: " + e);
-            }
+        }
 
+        public static void GetInfo(string apiUrl)
+        {
+            WebClient client = new WebClient();
+            client.Headers["Content-type"] = "application/json";
+            client.Encoding = Encoding.UTF8;
+            var json = client.DownloadData(apiUrl);
+            string download = Encoding.ASCII.GetString(json);
+            List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
+            if (foodType.Count > 0)
+            {
+                foreach (Food food in foodType)
+                {
+                    Console.WriteLine($"Food name: {food.Name}\n" +
+                        $"Food Continent: {food.Continent}\n" +
+                        $"Food Country: {food.Country}\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No records found.");
+            }
         }
 
         public class Food
@@ -64,3 +63,5 @@ namespace LBFoodDistributor
         }
     }
 }
+
+
