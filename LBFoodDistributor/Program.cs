@@ -10,7 +10,6 @@ namespace LBFoodDistributor
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             Queue<string> asianQueue = new Queue<string>();
@@ -18,17 +17,19 @@ namespace LBFoodDistributor
             asianQueue.Enqueue("http://localhost:54775/asianfood");
             asianQueue.Enqueue("http://localhost:54776/asianfood");
 
-            while (!Console.ReadLine().Equals("quit"))
+            string continent = "start";
+
+            while (!continent.Equals("quit"))
             {
                 Console.Write("Enter either Asia or Europe: ");
-                string continent = Console.ReadLine();
+                continent = Console.ReadLine();
 
-                if (continent.ToLower().Contains("asia"))
+                if (continent.ToLower().Equals("asia"))
                 {
-                    GetInfo("http://localhost:56326/api/asianFood");
-                    GetInfo(asianQueue.Peek());
+                    GetInfo("http://localhost:54774/api/asianFood");
+                    //GetInfo(asianQueue.Peek());
                 }
-                else if (continent.ToLower().Contains("europe") || continent.ToLower().Contains("eu"))
+                else if (continent.ToLower().Equals("europe"))
                 {
                     GetInfo("http://localhost:56326/api/EFood");
                 }
