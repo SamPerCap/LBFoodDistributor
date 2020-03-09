@@ -23,16 +23,16 @@ namespace EuropeanFoodAPI.Controllers
 
         // GET: api/EFood
         [HttpGet]
-        public IEnumerable<Food> Get()
+        public ActionResult<IEnumerable<Food>> Get()
         {
-            isDown = random.Next(0,1);
+            isDown = random.Next(4);
             // 0 means the server is down.
             // 1 means the server is up.
 
             if (isDown == 0)
-                return null;
+                return NotFound();
             else
-                return repository.GetAll();
+                return Ok(repository.GetAll().ToList());
         }
 
     }
