@@ -2,12 +2,8 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost/AsianFoodAPI",
-      "sslPort": 0
-    },
     "iisExpress": {
-      "applicationUrl": "http://localhost:54774",
+      "applicationUrl": "http://localhost:54776",
       "sslPort": 0
     }
   },
@@ -16,13 +12,13 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "asianfood",
+      "launchUrl": "asianfood3",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "AsianFoodAPI": {
-      "commandName": "IIS",
+      "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
       "environmentVariables": {
