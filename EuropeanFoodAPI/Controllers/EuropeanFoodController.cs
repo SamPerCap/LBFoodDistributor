@@ -12,6 +12,8 @@ namespace EuropeanFoodAPI.Controllers
     [Route("api/EFood")]
     public class EuropeanFoodController : Controller
     {
+        Random random = new Random();
+        int isDown;
         private readonly IRepository<Food> repository;
 
         public EuropeanFoodController(IRepository<Food> repos)
@@ -23,7 +25,14 @@ namespace EuropeanFoodAPI.Controllers
         [HttpGet]
         public IEnumerable<Food> Get()
         {
-            return repository.GetAll();
+            isDown = random.Next(1);
+            // 0 means the server is down.
+            // 1 means the server is up.
+
+            if (isDown == 0)
+                return null;
+            else
+                return repository.GetAll();
         }
 
     }

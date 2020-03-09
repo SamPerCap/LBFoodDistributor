@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using EuropeanFoodAPI.Data;
 using EuropeanFoodAPI.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +10,8 @@ namespace EuropeanFoodAPI.Controllers
     [Route("api/EFood")]
     public class EuropeanFood2Controller : Controller
     {
+        Random random = new Random();
+        int isDown;
         private readonly IRepository<Food> repository;
 
         public EuropeanFood2Controller(IRepository<Food> repos)
@@ -23,7 +23,14 @@ namespace EuropeanFoodAPI.Controllers
         [HttpGet]
         public IEnumerable<Food> Get()
         {
-            return repository.GetAll();
+            isDown = random.Next(1);
+            // 0 means the server is down.
+            // 1 means the server is up.
+
+            if (isDown == 0)
+                return null;
+            else
+                return repository.GetAll();
         }
 
     }
