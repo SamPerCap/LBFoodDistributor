@@ -11,10 +11,10 @@ namespace AsianFoodAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AsianFood2Controller : Controller
+    public class AsianFoodController : Controller
     {
         private readonly IRepository<AsianFood> _asianFoodRepo;
-        public AsianFood2Controller(IRepository<AsianFood> asianFoodRepo)
+        public AsianFoodController(IRepository<AsianFood> asianFoodRepo)
         {
             _asianFoodRepo = asianFoodRepo;
         }

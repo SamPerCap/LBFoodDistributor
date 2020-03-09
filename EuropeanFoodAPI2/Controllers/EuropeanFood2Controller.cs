@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace EuropeanFoodAPI.Controllers
 {
-    [Route("api/EFood2")]
+    [Route("api/EFood")]
     public class EuropeanFood2Controller : Controller
     {
         private readonly IRepository<Food> repository;
