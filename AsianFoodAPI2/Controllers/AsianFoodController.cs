@@ -25,11 +25,11 @@ namespace AsianFoodAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<AsianFood>> Get()
         {
-            isDown = random.Next(1);
+            isDown = random.Next(4);
             // 0 means the server is down.
             // 1 means the server is up.
 
-            if (isDown == 0)
+            if (isDown <= 0)
                 return NotFound();
             else
                 return Ok(_asianFoodRepo.GetAll().ToList());

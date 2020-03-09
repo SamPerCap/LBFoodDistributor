@@ -17,7 +17,6 @@ namespace LBFoodDistributor
             asianQueue[1] = "http://localhost:54775/asianfood";
             asianQueue[2] = "http://localhost:54776/asianfood";
 
-
             string[] europeQueue = new string[2];
             europeQueue[0] = "http://localhost:56326/api/EFood";
             europeQueue[1] = "http://localhost:56327/api/EFood";
@@ -33,12 +32,24 @@ namespace LBFoodDistributor
 
                 if (continent.ToLower().Equals("asia"))
                 {
-                    if (iA == 3)
-                        iA = 0;
+                    try
+                    {
+                        if (iA == 3)
+                            iA = 0;
 
-                    GetInfo(asianQueue[iA]);
+                        GetInfo(asianQueue[iA]);
+                    }
+                    catch
+                    {
+                        iA += 1;
+                        if (iA >= 3)
+                        {
+                            iA = 0;
+                        }
+                        GetInfo(asianQueue[iA]);
+                    }
                     Console.WriteLine("APiUrl: " + asianQueue[iA] + "APiNumber: " + (iA + 1));
-                    iA += 1;
+                     iA += 1;
                 }
                 else if (continent.ToLower().Equals("europe"))
                 {
@@ -62,20 +73,23 @@ namespace LBFoodDistributor
             client.Headers["Content-type"] = "application/json";
             client.Encoding = Encoding.UTF8;
             var json = client.DownloadData(apiUrl);
-            string download = Encoding.ASCII.GetString(json);
-            List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
-            if (foodType.Count > 0)
+            if (json != null)
             {
-                foreach (Food food in foodType)
+                string download = Encoding.ASCII.GetString(json);
+                List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
+                if (foodType.Count > 0)
                 {
-                    Console.WriteLine($"Food name: {food.Name}\n" +
-                        $"Food Continent: {food.Continent}\n" +
-                        $"Food Country: {food.Country}\n");
+                    foreach (Food food in foodType)
+                    {
+                        Console.WriteLine($"Food name: {food.Name}\n" +
+                            $"Food Continent: {food.Continent}\n" +
+                            $"Food Country: {food.Country}\n");
+                    }
                 }
-            }
-            else
-            {
-                Console.WriteLine("No records found.");
+                else
+                {
+                    Console.WriteLine("No records found.");
+                }
             }
         }
 

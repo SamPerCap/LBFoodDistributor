@@ -23,7 +23,7 @@ namespace EuropeanFoodAPI.Controllers
         [HttpGet]
         public IEnumerable<Food> Get()
         {
-            isDown = random.Next(1);
+            isDown = random.Next(0,1);
             // 0 means the server is down.
             // 1 means the server is up.
 
