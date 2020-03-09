@@ -13,57 +13,53 @@ namespace LBFoodDistributor
 
         static void Main(string[] args)
         {
-            try
+            Queue<string> asianQueue = new Queue<string>();
+            asianQueue.Enqueue("http://localhost:54774/asianfood");
+            asianQueue.Enqueue("http://localhost:54775/asianfood");
+            asianQueue.Enqueue("http://localhost:54776/asianfood");
+
+            while (!Console.ReadLine().Equals("quit"))
             {
-            Start:
-                string apiUrl = "http://localhost:54774/asianfood";
-                string apiUrl2 = "http://localhost:54774/asianfood2";
-                string apiUrl3 = "http://localhost:54774/asianfood3";
                 Console.Write("Enter either Asia or Europe: ");
-                string name = Console.ReadLine();
+                string continent = Console.ReadLine();
 
-                Queue asianQueue = new Queue();
-                asianQueue.Enqueue(apiUrl);
-                asianQueue.Enqueue(apiUrl2);
-                asianQueue.Enqueue(apiUrl3);
-
-
-
-                if (name.ToLower().Contains("asia"))
+                if (continent.ToLower().Contains("asia"))
                 {
-                    asianQueue.Peek();
+                    GetInfo("http://localhost:56326/api/asianFood");
+                    GetInfo(asianQueue.Peek());
                 }
-                else if (name.ToLower().Contains("europe") || name.ToLower().Contains("eu"))
+                else if (continent.ToLower().Contains("europe") || continent.ToLower().Contains("eu"))
                 {
-                    apiUrl = "http://localhost:56326/api/EFood";
-                }
-                WebClient client = new WebClient();
-                client.Headers["Content-type"] = "application/json";
-                client.Encoding = Encoding.UTF8;
-                var json = client.DownloadData(apiUrl);
-                string download = Encoding.ASCII.GetString(json);
-                List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
-                if (foodType.Count > 0)
-                {
-                    foreach (Food food in foodType)
-                    {
-                        Console.WriteLine($"Food name: {food.Name}\n" +
-                            $"Food Continent: {food.Continent}\n" +
-                            $"Food Country: {food.Country}\n");
-                    }
+                    GetInfo("http://localhost:56326/api/EFood");
                 }
                 else
                 {
-                    Console.WriteLine("No records found.");
+                    Console.WriteLine("Command not identified");
                 }
-                Console.WriteLine();
-                goto Start;
             }
-            catch(Exception e)
-            {
-                Console.WriteLine("Something went wrong. Error: " + e);
-            }
+        }
 
+        public static void GetInfo(string apiUrl)
+        {
+            WebClient client = new WebClient();
+            client.Headers["Content-type"] = "application/json";
+            client.Encoding = Encoding.UTF8;
+            var json = client.DownloadData(apiUrl);
+            string download = Encoding.ASCII.GetString(json);
+            List<Food> foodType = (new JavaScriptSerializer()).Deserialize<List<Food>>(download);
+            if (foodType.Count > 0)
+            {
+                foreach (Food food in foodType)
+                {
+                    Console.WriteLine($"Food name: {food.Name}\n" +
+                        $"Food Continent: {food.Continent}\n" +
+                        $"Food Country: {food.Country}\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No records found.");
+            }
         }
 
         public class Food
@@ -76,3 +72,5 @@ namespace LBFoodDistributor
         }
     }
 }
+
+
