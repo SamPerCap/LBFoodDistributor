@@ -36,27 +36,51 @@ namespace LBFoodDistributor
                     {
                         if (iA == 3)
                             iA = 0;
-
                         GetInfo(asianQueue[iA]);
                     }
                     catch
                     {
+                        Console.WriteLine("The server is down, requesting the next server...");
+                        Console.WriteLine("");
+                        Console.WriteLine("The server is down, requesting the next server...");
+                        Console.WriteLine("");
+                        Console.WriteLine("The server is down, requesting the next server...");
+                        Console.WriteLine("");
+                        Console.WriteLine("The server is down, requesting the next server...");
+                        Console.WriteLine("");
+
                         iA += 1;
                         if (iA >= 3)
-                        {
                             iA = 0;
-                        }
                         GetInfo(asianQueue[iA]);
                     }
                     Console.WriteLine("APiUrl: " + asianQueue[iA] + "APiNumber: " + (iA + 1));
-                     iA += 1;
+                    iA += 1;
                 }
                 else if (continent.ToLower().Equals("europe"))
                 {
-                    if (iE == 2)
-                        iE = 0;
+                    try
+                    {
+                        if (iE == 2)
+                            iE = 0;
+                        GetInfo(europeQueue[iE]);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("The server is down, requesting the next server...");
+                        Console.WriteLine("");
+                        Console.WriteLine("The server is down, requesting the next server...");
+                        Console.WriteLine("");
+                        Console.WriteLine("The server is down, requesting the next server...");
+                        Console.WriteLine("");
+                        Console.WriteLine("The server is down, requesting the next server...");
+                        Console.WriteLine("");
 
-                    GetInfo(europeQueue[iE]);
+                        iE += 1;
+                        if (iE >= 2)
+                            iE = 0;
+                        GetInfo(europeQueue[iE]);
+                    }
                     Console.WriteLine("APiUrl: " + europeQueue[iE] + "APiNumber: " + (iE + 1));
                     iE += 1;
                 }
