@@ -23,7 +23,7 @@ namespace EuropeanFoodAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // In-memory database:
-            services.AddDbContext<EFoodApiContext>(opt => opt.UseInMemoryDatabase("EFoodDb"));
+            services.AddDbContext<EFoodApiContext>(opt => opt.UseInMemoryDatabase("EFoodDb2"));
 
             // Register repositories for dependency injection
             services.AddScoped<IRepository<Food>, EFoodRepository>();

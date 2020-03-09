@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EuropeanFoodAPI", "European
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsianFoodAPI", "AsianFoodAPI\AsianFoodAPI.csproj", "{EB2CDDA6-8786-470F-B772-B3B18B532334}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EuropeanFoodAPI2", "EuropeanFoodAPI2\EuropeanFoodAPI2.csproj", "{9B4C0A44-9410-45C9-A161-FC66650867D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EB2CDDA6-8786-470F-B772-B3B18B532334}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB2CDDA6-8786-470F-B772-B3B18B532334}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB2CDDA6-8786-470F-B772-B3B18B532334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B4C0A44-9410-45C9-A161-FC66650867D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4C0A44-9410-45C9-A161-FC66650867D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4C0A44-9410-45C9-A161-FC66650867D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4C0A44-9410-45C9-A161-FC66650867D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
