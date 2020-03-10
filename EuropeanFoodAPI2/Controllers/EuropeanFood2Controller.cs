@@ -26,11 +26,11 @@ namespace EuropeanFoodAPI.Controllers
         {
             // 0 means the server is down.
             // 1 means the server is up.
-            isDown = random.Next(4);
+            //isDown = random.Next(4);
 
-            if (isDown == 0)
-                return NotFound();
-            else
+            //if (isDown == 0)
+            //    return NotFound();
+            //else
                 return Ok(repository.GetAll().ToList());
         }
 
